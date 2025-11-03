@@ -44,7 +44,7 @@ const Footer = () => {
 
       <hr />
       <p className="footer-copyright">
-        © 2025 <strong>Harshita Food Hub</strong>. Built with ❤️ by Harshita Goyal.
+        © 2024 <strong>Harshita Food Hub</strong>. Built with ❤️ by Harshita Goyal.
       </p>
     </div>
   )

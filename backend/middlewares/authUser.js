@@ -1,25 +1,29 @@
 import jwt from "jsonwebtoken";
 
-// User authentication middleware
 const authUser = async (req, res, next) => {
   try {
-    // Get the token from the request headers
-    const { token } = req.headers;
+    // ✅ Extract token from "Authorization" header
+    const authHeader = req.headers.authorization;
 
-    if (!token) {
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return res
         .status(401)
-        .json({ success: false, message: "Token is Missing!" });
+        .json({ success: false, message: "Token missing or invalid" });
     }
 
-    // Verify the token
-    const tokenDecode = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = { userId: tokenDecode.id };
+    // ✅ Remove "Bearer " prefix and get the token
+    const token = authHeader.split(" ")[1];
 
-    // Call the next middleware or route handler
-    next();
+    // ✅ Verify token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    // ✅ Attach user info to request object
+    req.user = { userId: decoded.id };
+
+    next(); // Continue to controller
   } catch (error) {
-    res.status(401).json({ success: false, message: error.message });
+    console.error("Auth error:", error);
+    res.status(401).json({ success: false, message: "Token invalid or expired" });
   }
 };
 

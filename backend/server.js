@@ -25,12 +25,13 @@ app.use("/api/user", userRouter);
 // default route
 app.get("/", (req, res) => {
   res.json({
-    message: "Welcome to Mahmud's Doctor Appointment Booking System API 🚀",
+    message: "Welcome to Harshita's Doctor Appointment Booking System API 🚀",
     status: "API is running successfully",
-    frontend: "https://mahmud-doctor-mern.vercel.app/",
-    admin_portal: "https://mahmud-doctor-mern-admin.vercel.app/",
-    portfolio: "https://mahmudalam.com/",
-    documentation: "https://mahmud-doctor-api.onrender.com/api-docs",
+    frontend: "http://localhost:3000",
+    admin_portal: "http://localhost:5173",
+    portfolio: "https://harshitagoyal.vercel.app/",
+    documentation: "http://localhost:8000/api-docs",
+    developer: "Developed with ❤️ by Harshita Goyal",
   });
 });
 
@@ -43,4 +44,10 @@ app.use((req, res) => {
   });
 });
 
-app.listen(port, () => console.log(`Server is running on PORT ${port}`));
+app.listen(port, () => {
+  console.log(`
+  🚀 Doctor Appointment API is live!
+  👩‍💻 Developed by: Harshita Goyal
+  🌐 Running on: http://localhost:${port}
+  `);
+});

@@ -17,25 +17,26 @@ const About = () => {
         />
         <div className="flex flex-col justify-center gap-6 md:w-2/4 text-sm text-gray-600 capitalize">
           <p>
-            Welcome to Prescripto, your trusted partner in managing your
-            healthcare needs conveniently and efficiently. At Prescripto, we
-            understand the challenges individuals face when it comes to
-            scheduling doctor appointments and managing their health records.
+            Welcome to MediBook. MediBook is designed to simplify healthcare
+            management by providing a seamless and efficient platform for
+            patients. We understand the challenges of scheduling appointments,
+            tracking medical records, and staying on top of personal health, and
+            our mission is to make this process as smooth as possible.
           </p>
           <p>
-            Prescripto Is Committed To Excellence In Healthcare Technology. We
-            Continuously Strive To Enhance Our Platform, Integrating The Latest
-            Advancements To Improve User Experience And Deliver Superior
-            Service. Whether You're booking Your First Appointment Or Managing
-            ongoing care, Prescripto is Here To Support You Every Step Of The
-            Way
+            At MediBook, we are dedicated to delivering a reliable and
+            user-friendly experience. We continuously enhance our platform with
+            the latest technological advancements to ensure that managing your
+            healthcare is convenient, secure, and efficient. Whether you are
+            booking your first appointment or managing ongoing care, MediBook
+            supports you every step of the way.
           </p>
           <b className="text-gray-800">Our Vision</b>
           <p>
-            Our Vision At Prescripto Is to A seamless Healthcare Experience for
-            Every User. We Aim To Bridge The Gap between Patients And Healthcare
-            providers, making it easier for fou to access The Care You Need,
-            When you need it.
+            Our vision is to create a seamless healthcare experience for every
+            user. MediBook aims to bridge the gap between patients and
+            healthcare providers, making access to quality care simple, timely,
+            and hassle-free.
           </p>
         </div>
       </div>
@@ -48,15 +49,24 @@ const About = () => {
       <div className="flex flex-col md:flex-row mb-20">
         <div className="border border-gray-300 px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px] hover:bg-primary hover:text-white transition-all duration-300 text-gray-600 cursor-pointer">
           <b>Efficiency:</b>
-          <p>Streamlined appointment scheduling that fits into your busy lifestyle.</p>
+          <p>
+            Streamlined appointment scheduling that fits into your busy
+            lifestyle.
+          </p>
         </div>
         <div className="border border-gray-300 px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px] hover:bg-primary hover:text-white transition-all duration-300 text-gray-600 cursor-pointer">
           <b>Convenience:</b>
-          <p>Access to a network of trusted healthcare professionals in your area.</p>
+          <p>
+            Access to a network of trusted healthcare professionals in your
+            area.
+          </p>
         </div>
         <div className="border border-gray-300 px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px] hover:bg-primary hover:text-white transition-all duration-300 text-gray-600 cursor-pointer">
           <b>Personalization:</b>
-          <p>Tailored recommendations and reminders to help you stay on top of your health.</p>
+          <p>
+            Tailored recommendations and reminders to help you stay on top of
+            your health.
+          </p>
         </div>
       </div>
     </div>

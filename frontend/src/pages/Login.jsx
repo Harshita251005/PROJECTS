@@ -1,25 +1,23 @@
-import { useContext } from "react";
-import { useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { backendUrl, setToken, token } = useContext(AppContext);
   const navigate = useNavigate();
-  const [state, setState] = useState("log in");
+
+  const [mode, setMode] = useState("Login"); // "Login" or "Sign Up"
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
 
-  const onSubmitHandler = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      if (state === "Sign Up") {
-        const { data } = await axios.post(backendUrl + "/api/user/register", {
+      if (mode === "Sign Up") {
+        const { data } = await axios.post(`${backendUrl}/api/user/register`, {
           name,
           email,
           password,
@@ -33,7 +31,7 @@ const Login = () => {
           toast.error(data.message || "Failed to create account");
         }
       } else {
-        const { data } = await axios.post(backendUrl + "/api/user/login", {
+        const { data } = await axios.post(`${backendUrl}/api/user/login`, {
           email,
           password,
         });
@@ -52,91 +50,73 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (token) {
-      navigate("/");
-    }
+    if (token) navigate("/");
   }, [token]);
 
   return (
-    <form
-      onSubmit={onSubmitHandler}
-      className="min-h-[80vh] flex flex-col items-center"
-    >
-      {/* <div className="flex flex-col items-center w-full"> */}
-      <div className="flex flex-col gap-3 m-auto items-start p-8 min-w-[340] sm:min-w-96 border rounded-xl text-zinc-600 text-sm shadow-lg">
-        <p className="text-2xl font-semibold">
-          {state === "Sign Up" ? "Create Account" : "Login"}
-        </p>
-        <p>
-          Please {state === "Sign Up" ? "sign up" : "log in"} to book
-          appointment!
-        </p>
-        {state === "Sign Up" && (
-          <div className="w-full">
-            <p>Full Name</p>
+    <div className="min-h-[80vh] flex flex-col items-center justify-center">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-4 p-8 min-w-[340px] sm:min-w-96 border rounded-xl shadow-lg text-zinc-700"
+      >
+        <h2 className="text-2xl font-semibold text-center">
+          {mode === "Sign Up" ? "Create Account" : "Login"}
+        </h2>
+        {mode === "Sign Up" && (
+          <div className="flex flex-col">
+            <label>Full Name</label>
             <input
-              className="border border-zinc-300 rounded w-full p-2 mt-1"
               type="text"
-              onChange={(e) => setName(e.target.value)}
               value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="border p-2 rounded mt-1"
               required
             />
           </div>
         )}
-        <div className="w-full">
-          <p>Email</p>
+        <div className="flex flex-col">
+          <label>Email</label>
           <input
-            className="border border-zinc-300 rounded w-full p-2 mt-1"
             type="email"
-            onChange={(e) => setEmail(e.target.value)}
             value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="border p-2 rounded mt-1"
             required
           />
         </div>
-
-        <div className="w-full">
-          <p>Password</p>
+        <div className="flex flex-col">
+          <label>Password</label>
           <input
-            className="border border-zinc-300 rounded w-full p-2 mt-1"
             type="password"
-            onChange={(e) => setPassword(e.target.value)}
             value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="border p-2 rounded mt-1"
             required
           />
         </div>
         <button
           type="submit"
-          className="bg-primary text-white w-full py-2 rounded-md text-base"
+          className="bg-primary text-white py-2 rounded-md mt-2"
         >
-          {state === "Sign Up" ? "Create Account" : "Login"}
+          {mode === "Sign Up" ? "Create Account" : "Login"}
         </button>
-        {state === "Sign Up" ? (
-          <p>
-            Already have an account?{" "}
-            <span
-              onClick={() => setState("Login")}
-              className="text-primary underline cursor-pointer"
-            >
-              Login here
-            </span>
-          </p>
-        ) : (
-          <p>
-            Don't have an account?{" "}
-            <span
-              onClick={() => setState("Sign Up")}
-              className="text-primary underline cursor-pointer"
-            >
-              Sign-up here
-            </span>
-          </p>
-        )}
-      </div>
-      {/* ----- ADMIN PORTAL LOGIN LINK ----- */}
+        <p className="text-center text-sm mt-2">
+          {mode === "Sign Up"
+            ? "Already have an account?"
+            : "Don't have an account?"}{" "}
+          <span
+            onClick={() => setMode(mode === "Sign Up" ? "Login" : "Sign Up")}
+            className="text-primary underline cursor-pointer"
+          >
+            {mode === "Sign Up" ? "Login here" : "Sign-up here"}
+          </span>
+        </p>
+      </form>
+
       <p className="mt-10 text-zinc-600 text-center w-full">
         Are you a Doctor or Admin?{" "}
         <a
-          href="https://mahmud-doctor-mern-admin.vercel.app/"
+          href="https://localhost:5174"
           className="text-primary underline"
           target="_blank"
           rel="noopener noreferrer"
@@ -144,8 +124,7 @@ const Login = () => {
           Login here
         </a>
       </p>
-      {/* </div> */}
-    </form>
+    </div>
   );
 };
 

@@ -2,25 +2,42 @@ import { assets } from "../assets/assets_frontend/assets";
 
 const Contact = () => {
   return (
-    <div>
-      <div className="text-center text-2xl pt-10 text-gray-500 uppercase">
-        <p>
-          Contact <span className="text-gray-700 font-medium">Us</span>
-        </p>
+    <section className="py-16 px-6 md:px-20 bg-gray-50">
+      {/* ---------- Section Title ---------- */}
+      <div className="text-center text-3xl font-bold text-gray-800 mb-12 uppercase">
+        Contact <span className="text-primary">Us</span>
       </div>
 
-      <div className="my-10 flex flex-col md:flex-row gap-10 justify-center mb-28 text-sm">
-        <img className="w-full md:max-w-[360px]" src={assets.contact_image} alt="" />
-        <div className="flex flex-col justify-center gap-6 items-start">
-          <p className="font-semibold text-lg text-gray-600 uppercase">Our Office</p>
-          <p className="text-gray-500">Mirpur 10, Dhaka<br />Bangladesh</p>
-          <p className="text-gray-500">Email: mahmudalam.official@gmail.com</p>
-          <p className="font-semibold text-lg text-gray-600 uppercase">Careers at Prescripto</p>
-          <p className="text-gray-500">Learn more about our teams and job openings.</p>
-          <button className="border border-primary text-primary px-8 py-4 text-sm hover:bg-primary hover:text-white transition-all duration-500">Explore Jobs</button>
+      {/* ---------- Main Content ---------- */}
+      <div className="flex flex-col md:flex-row gap-12 justify-center items-start">
+        {/* Image / Illustration */}
+        <img
+          className="w-full md:max-w-[400px] rounded-lg shadow-md"
+          src={assets.contact_image}
+          alt="Contact Illustration"
+        />
+
+        {/* Contact Details */}
+        <div className="flex flex-col justify-center gap-6 max-w-md">
+          <p className="font-semibold text-lg text-gray-700 uppercase">Our Office</p>
+          <p className="text-gray-600">
+            123 Greenway Street, Suite 402<br />
+            New York, NY 10001, USA
+          </p>
+          <p className="text-gray-600">Email: contact@medibook.com</p>
+          <p className="text-gray-600">Phone: +1 (555) 123-4567</p>
+
+          <p className="font-semibold text-lg text-gray-700 uppercase mt-6">Careers at MediBook</p>
+          <p className="text-gray-600">
+            Interested in joining our team? Explore current job openings and learn more about working with us.
+          </p>
+
+          <button className="border border-primary text-primary px-8 py-3 text-sm rounded hover:bg-primary hover:text-white transition-all duration-500">
+            Explore Jobs
+          </button>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

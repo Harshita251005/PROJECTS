@@ -104,10 +104,15 @@ const Appointment = () => {
       const slotDate = day + "_" + month + "_" + year;
 
       const { data } = await axios.post(
-        backendUrl + "/api/user/book-appointment",
-        { docId, slotDate, slotTime },
-        { headers: { token } }
-      );
+  backendUrl + "/api/user/book-appointment",
+  { docId, slotDate, slotTime },
+  {
+    headers: {
+      Authorization: `Bearer ${token}`, // ✅ Correct way
+    },
+  }
+);
+
 
       if (data.success) {
         toast.success(data.message || "Appointment booked successfully");

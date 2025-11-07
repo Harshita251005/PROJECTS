@@ -20,10 +20,13 @@ const Navbar = () => {
     <div className="flex justify-between items-center px-4 sm:px-10 py-3 border-b bg-white">
       <div className="flex items-center gap-2 text-xs">
         <img
-          className="w-36 sm:w-40 cursor-pointer"
-          src={assets.admin_logo}
+          className="w-10 h-10 sm:w-12 sm:h-12 cursor-pointer"
+          src={assets.logo}
           alt=""
         />
+        <div className="flex flex-col">
+          <span className="font-semibold text-sm sm:text-base">MediBook</span>
+        </div>
         <p className="border px-2.5 py-0.5 rounded-full border-gray-500 text-gray-600">
           {aToken ? "Admin" : "Doctor"}
         </p>

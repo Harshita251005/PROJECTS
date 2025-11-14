@@ -17,51 +17,65 @@ const DoctorDashboard = () => {
     if (dToken) {
       getDashData();
     }
-  }, [dToken]);
+  }, [dToken, getDashData]);
+
+  // Show loading state while data is being fetched
+  if (!dashData) {
+    return (
+      <div className="m-5 flex items-center justify-center h-screen">
+        <div className="text-center">
+          <div className="inline-block animate-spin">
+            <div className="h-12 w-12 border-4 border-gray-300 border-t-blue-500 rounded-full"></div>
+          </div>
+          <p className="mt-4 text-gray-600">Loading dashboard...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    dashData && (
-      <div className="m-5">
-        <div className="flex flex-wrap gap-3">
-          <div className="flex items-center gap-2 bg-white p-4 min-w-52 rounded border-2 border-gray-100 cursor-pointer hover:scale-105 transition-all">
-            <img className="w-14" src={assets.earning_icon} alt="" />
-            <div>
-              <p className="text-xl font-semibold text-gray-600">
-                {currencySymbol} {dashData.earning}
-              </p>
-              <p className="text-gray-400">Earnings</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2 bg-white p-4 min-w-52 rounded border-2 border-gray-100 cursor-pointer hover:scale-105 transition-all">
-            <img className="w-14" src={assets.appointment_icon} alt="" />
-            <div>
-              <p className="text-xl font-semibold text-gray-600">
-                {dashData.appointments}
-              </p>
-              <p className="text-gray-400">Appointments</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2 bg-white p-4 min-w-52 rounded border-2 border-gray-100 cursor-pointer hover:scale-105 transition-all">
-            <img className="w-14" src={assets.patients_icon} alt="" />
-            <div>
-              <p className="text-xl font-semibold text-gray-600">
-                {dashData.patients}
-              </p>
-              <p className="text-gray-400">Patients</p>
-            </div>
+    <div className="m-5">
+      <div className="flex flex-wrap gap-3">
+        <div className="flex items-center gap-2 bg-white p-4 min-w-52 rounded border-2 border-gray-100 cursor-pointer hover:scale-105 transition-all">
+          <img className="w-14" src={assets.earning_icon} alt="" />
+          <div>
+            <p className="text-xl font-semibold text-gray-600">
+              {currencySymbol} {dashData.earning || 0}
+            </p>
+            <p className="text-gray-400">Earnings</p>
           </div>
         </div>
 
-        {/* latest Appointments */}
-        <div className="bg-white">
-          <div className="flex items-center gap-2.5 px-4 py-4 mt-10 rounded-t border border-gray-400">
-            <img src={assets.list_icon} alt="" />
-            <p className="font-semibold">latest Appointments</p>
+        <div className="flex items-center gap-2 bg-white p-4 min-w-52 rounded border-2 border-gray-100 cursor-pointer hover:scale-105 transition-all">
+          <img className="w-14" src={assets.appointment_icon} alt="" />
+          <div>
+            <p className="text-xl font-semibold text-gray-600">
+              {dashData.appointments || 0}
+            </p>
+            <p className="text-gray-400">Appointments</p>
           </div>
-          <div className="border border-t-0 border-gray-400">
-            {dashData.latestAppointments.map((item, index) => (
+        </div>
+
+        <div className="flex items-center gap-2 bg-white p-4 min-w-52 rounded border-2 border-gray-100 cursor-pointer hover:scale-105 transition-all">
+          <img className="w-14" src={assets.patients_icon} alt="" />
+          <div>
+            <p className="text-xl font-semibold text-gray-600">
+              {dashData.patients || 0}
+            </p>
+            <p className="text-gray-400">Patients</p>
+          </div>
+        </div>
+      </div>
+
+      {/* latest Appointments */}
+      <div className="bg-white">
+        <div className="flex items-center gap-2.5 px-4 py-4 mt-10 rounded-t border border-gray-400">
+          <img src={assets.list_icon} alt="" />
+          <p className="font-semibold">Latest Appointments</p>
+        </div>
+        <div className="border border-t-0 border-gray-400">
+          {dashData.latestAppointments && dashData.latestAppointments.length > 0 ? (
+            dashData.latestAppointments.map((item, index) => (
               <div
                 className="flex items-center px-6 py-3 gap-3 hover:bg-gray-100"
                 key={index}
@@ -102,11 +116,15 @@ const DoctorDashboard = () => {
                   </div>
                 )}
               </div>
-            ))}
-          </div>
+            ))
+          ) : (
+            <div className="px-6 py-3 text-center text-gray-500">
+              No appointments yet
+            </div>
+          )}
         </div>
       </div>
-    )
+    </div>
   );
 };
 

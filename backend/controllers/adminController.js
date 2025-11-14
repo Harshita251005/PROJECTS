@@ -9,6 +9,10 @@ import userModel from "../models/userModel.js";
 // API for adding doctor
 const addDoctor = async (req, res) => {
   try {
+    console.log("=== ADD DOCTOR REQUEST ===");
+    console.log("Body:", req.body);
+    console.log("File:", req.file);
+    
     const {
       name,
       email,
@@ -35,6 +39,18 @@ const addDoctor = async (req, res) => {
       !address ||
       !imageFile
     ) {
+      console.log("Missing fields:", {
+        name: !name,
+        email: !email,
+        password: !password,
+        speciality: !speciality,
+        degree: !degree,
+        experience: !experience,
+        about: !about,
+        fees: !fees,
+        address: !address,
+        imageFile: !imageFile,
+      });
       return res
         .status(400)
         .json({ success: false, message: "Please fill all fields" });
@@ -60,12 +76,34 @@ const addDoctor = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     // upload image to cloudinary
-    const imageUpload = await cloudinary.uploader.upload(imageFile.path, {
-      resource_type: "image",
-    });
-    const imageUrl = imageUpload.secure_url;
+    let imageUrl;
+    try {
+      const imageUpload = await cloudinary.uploader.upload(imageFile.path, {
+        resource_type: "image",
+      });
+      imageUrl = imageUpload.secure_url;
+    } catch (uploadError) {
+      console.error("Cloudinary upload error:", uploadError);
+      return res.status(500).json({
+        success: false,
+        message: "Failed to upload image: " + uploadError.message,
+      });
+    }
 
     // create doctor object
+    let parsedAddress;
+    try {
+      // Handle address parsing - it might be string or already object
+      parsedAddress = typeof address === "string" ? JSON.parse(address) : address;
+    } catch (parseError) {
+      console.error("Address parsing error:", parseError);
+      // If parsing fails, return error
+      return res.status(400).json({
+        success: false,
+        message: "Address must be valid JSON format",
+      });
+    }
+
     const doctorData = {
       name,
       email,
@@ -74,8 +112,8 @@ const addDoctor = async (req, res) => {
       degree,
       experience,
       about,
-      fees,
-      address: JSON.parse(address), // parse address to JSON
+      fees: Number(fees),
+      address: parsedAddress, // use parsed address
       image: imageUrl, // store the image URL
       date: Date.now(), // store the current date
     };
@@ -83,14 +121,28 @@ const addDoctor = async (req, res) => {
     const newDoctor = new doctorModel(doctorData);
     await newDoctor.save();
 
+    console.log("✅ Doctor added successfully:", { name, email });
+
     res.status(201).json({
       success: true,
       message: "Doctor added successfully",
     });
   } catch (error) {
+    console.error("❌ Error adding doctor:", error.message);
+    console.error("Error stack:", error.stack);
+    
+    // Check for duplicate email error
+    if (error.code === 11000) {
+      console.error("E11000 duplicate key error for:", error.keyValue);
+      return res.status(400).json({
+        success: false,
+        message: `Doctor with email "${error.keyValue.email}" already exists`,
+      });
+    }
+    
     res.status(500).json({
       success: false,
-      message: error.message,
+      message: error.message || "Failed to add doctor. Please try again.",
     });
   }
 };
@@ -107,22 +159,38 @@ const loginAdmin = async (req, res) => {
         .json({ success: false, message: "Please enter email and password!" });
     }
 
-    if (
-      email === process.env.ADMIN_EMAIL &&
-      password === process.env.ADMIN_PASSWORD
-    ) {
-      const token = jwt.sign(email + password, process.env.JWT_SECRET);
+    // Debug logging
+    const envEmail = process.env.ADMIN_EMAIL || "NOT SET";
+    const envPassword = process.env.ADMIN_PASSWORD || "NOT SET";
+    
+    console.log("=== ADMIN LOGIN ATTEMPT ===");
+    console.log("Received Email:", email, "| Length:", email.length);
+    console.log("Received Password:", password, "| Length:", password.length);
+    console.log("Expected Email:", envEmail, "| Length:", envEmail.length);
+    console.log("Expected Password:", envPassword, "| Length:", envPassword.length);
+    console.log("Email Match:", email === envEmail);
+    console.log("Password Match:", password === envPassword);
+    console.log("============================");
+
+    if (email === envEmail && password === envPassword) {
+      console.log("✅ Admin login successful!");
+      const token = jwt.sign(
+        { role: "admin", email: email },
+        process.env.JWT_SECRET
+      );
       return res.status(200).json({
         success: true,
         token,
       });
     } else {
+      console.log("❌ Credential mismatch!");
       return res.status(400).json({
         success: false,
         message: "Invalid email or password",
       });
     }
   } catch (error) {
+    console.error("Admin login error:", error);
     res.status(500).json({
       success: false,
       message: error.message,

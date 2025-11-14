@@ -10,11 +10,12 @@ import {
   updateDoctorProfile,
 } from "../controllers/doctorController.js";
 import authDoctor from "../middlewares/authDoctor.js";
+import { loginLimiter } from "../middlewares/rateLimiter.js";
 
 const doctorRouter = express.Router();
 
 doctorRouter.get("/list", doctorList);
-doctorRouter.post("/login", loginDoctor);
+doctorRouter.post("/login", loginLimiter, loginDoctor);
 doctorRouter.get("/appointments", authDoctor, appointmentsDoctor);
 doctorRouter.post("/complete-appointment", authDoctor, appointmentComplete);
 doctorRouter.post("/cancel-appointment", authDoctor, appointmentCancel);

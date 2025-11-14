@@ -42,7 +42,7 @@ const loginDoctor = async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
-      res.status(400).json({
+      return res.status(400).json({
         success: false,
         message: "Required fields are empty.",
       });
@@ -51,7 +51,7 @@ const loginDoctor = async (req, res) => {
     const doctor = await doctorModel.findOne({ email });
 
     if (!doctor) {
-      res.status(404).json({
+      return res.status(404).json({
         success: false,
         message: "Invalid email",
       });
@@ -60,7 +60,7 @@ const loginDoctor = async (req, res) => {
     const isMatch = await bcrypt.compare(password, doctor.password);
 
     if (!isMatch) {
-      res.status(401).json({
+      return res.status(401).json({
         success: false,
         message: "Password is incorrect",
       });

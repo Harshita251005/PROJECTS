@@ -11,12 +11,13 @@ import {
 } from "../controllers/userController.js";
 import authUser from "../middlewares/authUser.js";
 import upload from "../middlewares/multer.js";
+import { registerLimiter, loginLimiter } from "../middlewares/rateLimiter.js";
 
 const userRouter = express.Router();
 
-// Public routes
-userRouter.post("/register", registerUser);
-userRouter.post("/login", loginUser);
+// Public routes (with rate limiting)
+userRouter.post("/register", registerLimiter, registerUser);
+userRouter.post("/login", loginLimiter, loginUser);
 
 // Protected routes
 userRouter.get("/get-profile", authUser, getUserProfile);

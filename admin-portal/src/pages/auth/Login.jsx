@@ -42,7 +42,14 @@ const Login = () => {
         }
       }
     } catch (error) {
+      console.error("Login error:", error.response?.data || error.message);
       toast.error(error.response?.data?.message || "Invalid credentials");
+    }
+  };
+
+  const handleCredentialsInfo = () => {
+    if (state === "Admin") {
+      toast.info("Admin Credentials:\nEmail: admin123@mail.com\nPassword: admin1234");
     }
   };
 
@@ -75,6 +82,13 @@ const Login = () => {
         <button className="bg-primary text-white w-full py-2 rounded-md text-base cursor-pointer">
           Login
         </button>
+        {state === "Admin" && (
+          <div className="w-full text-xs bg-blue-50 border border-blue-200 p-2 rounded text-blue-800">
+            <p className="font-semibold mb-1">Demo Admin Credentials:</p>
+            <p>📧 Email: <code>admin123@mail.com</code></p>
+            <p>🔐 Password: <code>admin1234</code></p>
+          </div>
+        )}
         {state === "Admin" ? (
           <p className="text-xs text-gray-500 mt-2">
             Are you a Doctor?{" "}

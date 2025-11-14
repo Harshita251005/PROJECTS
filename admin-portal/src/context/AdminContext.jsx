@@ -85,14 +85,17 @@ export const AdminContextProvider = ({ children }) => {
 
   const getDashData = async () => {
     try {
+      console.log("🔄 AdminContext: Fetching dashboard data with token:", aToken ? "✓" : "✗");
       const { data } = await axios.get(backendUrl + "/api/admin/dashboard", {
         headers: { aToken },
       });
 
       if (data.success) {
+        console.log("✅ AdminContext: Dashboard data loaded successfully:", data.dashData);
         setDashData(data.dashData);
       }
     } catch (error) {
+      console.error("❌ AdminContext: Dashboard fetch error:", error.response?.data || error.message);
       toast.error(
         error.response?.data?.message || "Failed to load Dashboard data"
       );

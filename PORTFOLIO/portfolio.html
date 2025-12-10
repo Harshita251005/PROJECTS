@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="portfolio.css" />
     <script src="https://unpkg.com/typed.js@2.0.15/dist/typed.umd.js"></script>
@@ -35,7 +38,7 @@
           <a href="https://github.com/Harshita251005" style="--i: 9"><i class='bx bxl-github'></i></a>
           <a href="https://leetcode.com/u/Harshita251005/" style="--i: 7"><i class='bx bx-code-alt'></i></a>
         </div>
-        <a href="http://127.0.0.1:3000/PORTFOLIO/portfolio.html#about" class="btn-box">More About Me</a>
+        <a href="#about" class="btn-box">More About Me</a>
       </div>
       <div class="profile">
         <img src="profile.jpg" alt="Profile Picture" />
@@ -53,7 +56,7 @@
         <p>
           I am pursuing my BE in Computer Science. My primary programming language is Java, and I have a solid understanding of Data Structures & Algorithms. Additionally, I have  built projects where I worked on both frontend and backend. I am also familiar with SQL for database management and Git for version control. I enjoy solving complex coding challenges and continuously improving my technical skills. I am eager to apply my knowledge in a real-world software development environment and grow as a Software Engineer...
         </p>
-        <a href="http://127.0.0.1:3000/PORTFOLIO/portfolio.html#services" class="btn-box">More About Me</a>
+        <a href="#services" class="btn-box">More About Me</a>
       </div>
     </section>
 
@@ -168,12 +171,12 @@
     </section>
 
     <section>
-      <div id="portfolio" id="project">
+      <div id="portfolio">
         <div class="main-text" id="project">
           <h2>Latest <span>Project</span></h2>
           <div class="portfolio-content">
             <div class="row">
-              <img src="jhj.png".jpg" alt="Project Image" />
+              <img src="jhj.png" alt="Project Image" />
               <div class="layer">
                 <h5>Task Manager System</h5>
                 <p>
@@ -227,10 +230,10 @@
       </div>
 <div class="contact-form">
   <form action="">
-    <input type="text" placeholder="Enter your name" required>
-    <input type="email" placeholder="Enter your email" required>
-    <input type="" placeholder="Enter your subject">
-    <textarea name="" id="" cols="40" rows="10" placeholder="Enter your message" required></textarea>
+    <input type="text" name="name" placeholder="Enter your name" required>
+    <input type="email" name="email" placeholder="Enter your email" required>
+    <input type="text" name="subject" placeholder="Enter your subject">
+    <textarea name="message" id="" cols="40" rows="10" placeholder="Enter your message" required></textarea>
     <input type="submit" value="submit" class="send">
   </form>
     </section>

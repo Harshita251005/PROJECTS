@@ -1,0 +1,8 @@
+Found 1 events matching 'Cyber'.
+ID: 693e3d2e9907949802e8df2a
+Title: Cyber Security Capture The Flag
+Status: completed
+Phase: registration
+Start: Sat Mar 28 2026 05:30:00 GMT+0530 (India Standard Time)
+End:   Sun Mar 29 2026 05:30:00 GMT+0530 (India Standard Time)
+-------------------

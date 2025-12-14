@@ -1,0 +1,8 @@
+--- Team Details ---
+ID: 693e4d0e9907949802e8f3e7
+Name: Code Warriers
+Max Members: 2 (Type: number)
+Members Count: 2
+Members: User1, User2
+Event: Cyber Security Capture The Flag
+Event Max Team Size: 4

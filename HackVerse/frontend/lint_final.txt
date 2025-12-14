@@ -1,0 +1,32 @@
+
+> hackverse-frontend@0.0.0 lint
+> eslint .
+
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\pages\LiveLeaderboard.jsx
+  13:10  error  'leaderboard' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+  14:10  error  'lastUpdated' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+  15:10  error  'loading' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u      no-unused-vars
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\pages\Messages.jsx
+  66:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  64 |       const target = allRooms.find(r => r._id === urlRoomId);
+  65 |       if (target) {
+> 66 |         setActiveRoom(target);
+     |         ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  67 |       }
+  68 |     }
+  69 |   }, [urlRoomId, rooms]);  react-hooks/set-state-in-effect
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\pages\VerifyEmail.jsx
+  1:31  error  'useCallback' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+✖ 5 problems (5 errors, 0 warnings)
+

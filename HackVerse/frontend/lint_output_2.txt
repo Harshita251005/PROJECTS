@@ -1,0 +1,194 @@
+﻿
+> hackverse-frontend@0.0.0 lint
+> eslint .
+
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\components\Navbar.jsx
+   5:8  error  'toast' is defined but never used. Allowed unused vars must match /^[A-Z_]/u                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          no-unused-vars
+  31:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  29 |   useEffect(() => {
+  30 |     if (isAuthenticated) {
+> 31 |       fetchNotifications();
+     |       ^^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  32 |     }
+  33 |
+  34 |     // Listen for new notifications  react-hooks/set-state-in-effect
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\components\TeamChat.jsx
+  35:7  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  33 |   useEffect(() => {
+  34 |     if (isMember || isAdmin) {
+> 35 |       fetchMessages();
+     |       ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  36 |     }
+  37 |   }, [teamId, isMember, isAdmin]);
+  38 |  react-hooks/set-state-in-effect
+  37:6  warning  React Hook useEffect has a missing dependency: 'fetchMessages'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               react-hooks/exhaustive-deps
+  62:6  warning  React Hook useEffect has a missing dependency: 'user._id'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    react-hooks/exhaustive-deps
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\components\organizer\EventEditForm.jsx
+  47:9  error  'handleImageChange' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\components\organizer\ParticipantList.jsx
+  6:10  error  'filter' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u     no-unused-vars
+  6:18  error  'setFilter' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\components\organizer\ProjectList.jsx
+  14:6  warning  React Hook useEffect has a missing dependency: 'fetchSubmissions'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\context\AuthContext.jsx
+  7:14  error  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\context\SocketContext.jsx
+    8:14  error  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       react-refresh/only-export-components
+  101:7   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+   99 |       });
+  100 |
+> 101 |       setSocket(newSocket);
+      |       ^^^^^^^^^ Avoid calling setState() directly within an effect
+  102 |
+  103 |       return () => {
+  104 |         newSocket.close();  react-hooks/set-state-in-effect
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\pages\CreateEvent.jsx
+  23:10  error  'imageFile' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u          no-unused-vars
+  24:10  error  'imagePreview' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u       no-unused-vars
+  33:9   error  'handleImageChange' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\pages\EventDetails.jsx
+  53:6  warning  React Hook useEffect has missing dependencies: 'fetchEvent' and 'fetchSchedule'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\pages\EventEdit.jsx
+  19:6  warning  React Hook useEffect has a missing dependency: 'fetchEvent'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\pages\EventManage.jsx
+  47:6  warning  React Hook useEffect has a missing dependency: 'fetchEvent'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\pages\Events.jsx
+  22:6  warning  React Hook useEffect has a missing dependency: 'fetchEvents'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\pages\LiveLeaderboard.jsx
+  11:10  error  'leaderboard' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+  12:10  error  'loading' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u      no-unused-vars
+  13:10  error  'lastUpdated' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\pages\Messages.jsx
+  63:5  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  61 |
+  62 |   useEffect(() => {
+> 63 |     fetchRooms();
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  64 |   }, []);
+  65 |
+  66 |   useEffect(() => {                                                                                              react-hooks/set-state-in-effect
+  64:6  warning  React Hook useEffect has a missing dependency: 'fetchRooms'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          react-hooks/exhaustive-deps
+  72:9  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  70 |       const target = allRooms.find(r => r._id === urlRoomId);
+  71 |       if (target) {
+> 72 |         setActiveRoom(target);
+     |         ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  73 |       }
+  74 |     }
+  75 |   }, [urlRoomId, rooms]);  react-hooks/set-state-in-effect
+  79:7  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  77 |   useEffect(() => {
+  78 |     if (activeRoom) {
+> 79 |       fetchMessages(activeRoom._id);
+     |       ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  80 |
+  81 |       // Join the room
+  82 |       if (socket && connected) {                      react-hooks/set-state-in-effect
+  93:6  warning  React Hook useEffect has a missing dependency: 'fetchMessages'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       react-hooks/exhaustive-deps
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\pages\Profile.jsx
+   32:6   warning  React Hook useEffect has a missing dependency: 'fetchUserProfile'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  138:30  error    'error' is defined but never used                                                                                    no-unused-vars
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\pages\SubmitProject.jsx
+  25:6  warning  React Hook useEffect has a missing dependency: 'fetchEvent'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\pages\SupportTickets.jsx
+   6:11  error  'user' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+  28:14  error  'err' is defined but never used                                                       no-unused-vars
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\pages\TeamDetails.jsx
+  19:6  warning  React Hook useEffect has a missing dependency: 'fetchTeamDetails'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  69:9  error    'isLeader' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u                             no-unused-vars
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\pages\Users.jsx
+  34:6  warning  React Hook useEffect has a missing dependency: 'fetchUsers'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\pages\VerifyEmail.jsx
+  31:5  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  29 |
+  30 |   useEffect(() => {
+> 31 |     verifyEmail();
+     |     ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  32 |   }, [token]);
+  33 |
+  34 |  react-hooks/set-state-in-effect
+  32:6  warning  React Hook useEffect has a missing dependency: 'verifyEmail'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                react-hooks/exhaustive-deps
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\pages\admin\Announcements.jsx
+   9:10  error  'showForm' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u      no-unused-vars
+  36:9   error  'handleSubmit' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\pages\admin\Messages.jsx
+  13:6  warning  React Hook useEffect has a missing dependency: 'fetchTickets'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\User\OneDrive\Music\WEB DEVELOPMENT\HackForge\frontend\src\pages\admin\Users.jsx
+  37:6   warning  React Hook useEffect has a missing dependency: 'fetchUsers'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  46:14  error    'error' is defined but never used                                                                              no-unused-vars
+  58:14  error    'error' is defined but never used                                                                              no-unused-vars
+
+Γ£û 43 problems (27 errors, 16 warnings)
+

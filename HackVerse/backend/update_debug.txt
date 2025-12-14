@@ -1,0 +1,4 @@
+Starting updateEvent for Cyber Security Capture The Flag
+Request body keys: title, description, startDate, endDate, maxTeamSize, status, venue, prizes, rules, image
+Starting updateEvent for Cyber Security Capture The Flag
+Request body keys: title, description, startDate, endDate, maxTeamSize, status, venue, prizes, rules, image
